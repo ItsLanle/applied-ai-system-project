@@ -7,6 +7,12 @@ work from Modules 1–3.
 
 ---
 
+## Demo
+
+[Watch the walkthrough on Loom](https://www.loom.com/share/04d7bd0784ed4a78909fa6517800b561)
+
+---
+
 ## Original Project (Modules 1–3)
 
 > **Note:** Replace this section with your actual Module 1–3 project name and description.
@@ -40,6 +46,8 @@ and Sourcegraph Cody.
 ---
 
 ## Architecture Overview
+
+![BugHound Architecture Diagram](assets/bughound_architecture.png)
 
 ```
 ┌──────────────────────────────────────────────────────────┐
@@ -124,6 +132,15 @@ pytest
 ---
 
 ## Sample Interactions
+
+**Main screen:**
+![BugHound main screen](assets/app_main_screen.png)
+
+**Analysis results:**
+![BugHound analysis results](assets/app_analysis_results.png)
+
+**Evaluation report:**
+![BugHound evaluation report](assets/app_evaluation_report.png)
 
 ### Example 1 — Bare `except:` (Heuristic mode)
 

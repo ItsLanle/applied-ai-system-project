@@ -409,13 +409,15 @@ class TestDebugAgent:
 
         for line in text.splitlines():
             matched = False
+            # Strip markdown bold/italic markers so **LABEL:** and LABEL: both match
+            clean_line = re.sub(r"[\*_]+", "", line.strip()).strip()
             for label, key in labels.items():
-                if line.strip().upper().startswith(label + ":"):
+                if clean_line.upper().startswith(label + ":"):
                     flush()
                     buffer = []
                     current_key = key
                     # Content may appear on the same line after the colon
-                    after = line.strip()[len(label) + 1:].strip()
+                    after = clean_line[len(label) + 1:].strip()
                     if after:
                         buffer.append(after)
                     matched = True
@@ -433,7 +435,7 @@ class TestDebugAgent:
     def _strip_code_fences(self, text: str) -> str:
         text = text.strip()
         match = re.search(
-            r"```(?:python|json)?\s*(.*?)\s*```", text, flags=re.DOTALL | re.IGNORECASE
+            r"```\w*\s*(.*?)\s*```", text, flags=re.DOTALL
         )
         if match:
             return match.group(1)

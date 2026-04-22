@@ -387,10 +387,16 @@ with tab2:
                     with st.expander("Show diff"):
                         st.code(diff_text, language="diff")
             else:
-                st.warning(
-                    "No corrected code in offline mode. "
-                    "Switch to Gemini mode to see the fix."
-                )
+                if mode == "Heuristic only (no API)":
+                    st.warning(
+                        "No corrected code in offline mode. "
+                        "Switch to Gemini mode to see the fix."
+                    )
+                else:
+                    st.warning(
+                        "BugHound could not produce a fix. "
+                        "Check the agent trace below for details."
+                    )
 
         st.divider()
 

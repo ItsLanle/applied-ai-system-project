@@ -1,0 +1,17 @@
+flowchart TD
+    A[BugHoundAgent] --> B[PLAN]
+    B --> C[ANALYZE]
+    C --> D[ACT]
+    D --> E[TEST]
+    E --> F[REFLECT]
+
+    C --> G["Heuristic<br/>offline"]
+    C --> H[Gemini API]
+
+    D --> I["Heuristic<br/>offline"]
+    D --> J[Gemini API]
+
+    E --> K["assess_risk()<br/>always local"]
+
+    A --> L["llm_client.py<br/>GeminiClient / MockClient"]
+    A --> M["risk_assessor.py<br/>score + level + reasons"]

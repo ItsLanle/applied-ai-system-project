@@ -221,7 +221,7 @@ class BugHoundAgent:
 
     def _strip_code_fences(self, text: str) -> str:
         text = text.strip()
-        match = re.search(r"```(?:python)?\s*(.*?)\s*```", text, flags=re.DOTALL | re.IGNORECASE)
+        match = re.search(r"```\w*\s*(.*?)\s*```", text, flags=re.DOTALL)
         if match:
             return match.group(1)
         return text
