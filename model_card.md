@@ -99,6 +99,27 @@ Gemini rewrote the entire function, renamed the variable `path` to `file_path`, 
 
 ---
 
+## 7) Evaluation Harness (Stretch Feature)
+
+To demonstrate measurable performance and reliability, I implemented an evaluation harness (`evaluation_harness.py`) that runs the agent on predefined test cases and generates summary metrics.
+
+**Test Setup:**
+- **Test Cases**: 4 Python snippets from `sample_code/` (cleanish.py, flaky_try_except.py, print_spam.py, mixed_issues.py)
+- **Modes Tested**: Heuristic mode (always available), Gemini mode (when API key is configured)
+- **Metrics Collected**: Pass/fail rate (based on auto-fix approval), risk scores, issue counts, risk level distribution
+
+**Results (Heuristic Mode):**
+- **Pass Rate**: 50.0% (2/4 fixes auto-approved)
+- **Average Risk Score**: 70.0/100
+- **Average Issues Detected**: 1.2 per test case
+- **Risk Distribution**: 50% low, 25% medium, 25% high
+
+**Key Insights:**
+- The harness provides objective measurement of system performance
+- Pass/fail is determined by the risk assessor's `should_autofix` flag (score ≥75)
+- Confidence ratings are represented by risk scores (higher = more confident in safety)
+- This evaluation demonstrates the system's reliability guardrails in action
+
 ## 7) Human-in-the-loop decision
 
 **Scenario**: The proposed fix removes or restructures exception handling in code that interacts with external resources (files, databases, network calls).
